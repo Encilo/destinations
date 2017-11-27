@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { TouchableHighlight, Text } from 'react-native';
 
 export default class Button extends Component {
-    
     render() {
         return (
             <TouchableHighlight style={this.props.buttonStyle}

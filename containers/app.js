@@ -15,5 +15,4 @@ class AppContainer extends Component {clsa
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(ActionCreators, dispatch);
 }
-
 export default connect(() => { return {} }, mapDispatchToProps)(AppContainer);
