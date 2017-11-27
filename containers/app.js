@@ -5,7 +5,6 @@ import { ActionCreators } from '../actions';
 import RootNavigator from '../navigators/root';
 
 class AppContainer extends Component {
-    
     render() {
         return (
             <RootNavigator {...this.props} />
