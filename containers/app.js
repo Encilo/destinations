@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import RootNavigator from '../navigators/root';
 
-class AppContainer extends Component {clsa
+class AppContainer extends Component {
     render() {
         return (
             <RootNavigator {...this.props} />

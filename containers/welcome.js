@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import Button from '../components/button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -33,21 +33,22 @@ class WelcomeScreen extends Component {
 
     render() {
         return (
-            <View style={styles.container}>
+            <ImageBackground style={styles.container}
+                source={require('../images/welcome-bckgrd.jpg')}>
                 <Text style={styles.textTitle}>
                     Great Places
-                    </Text>
+                </Text>
                 <Text style={styles.textDescription}>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                    </Text>
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                </Text>
                 <Button buttonStyle={this.state.pressStatus ? styles.buttonPress : styles.button}
-                    textStyle={this.state.pressStatus ? styles.buttonTextPress : styles.buttonText}
+                    textStyle={styles.buttonText}
                     buttonText={"Get started"}
                     clickHandler={this._getStartedClickHandler}
                     buttonShowUnderlay={this._onShowUnderlay}
                     buttonHideUnderlay={this._onHideUnderlay} />
-            </View>
+            </ImageBackground>
         )
     }
 }
@@ -59,41 +60,31 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center"
     },
-    background: {
-
-    },
     textTitle: {
         marginTop: 300,
         fontSize: 24,
-        color: "black"
+        color: "white"
     },
     textDescription: {
         paddingTop: 30,
         paddingLeft: 40,
         paddingRight: 40,
-        color: "gray"
+        color: "white"
     },
     button: {
         marginTop: 100,
         borderWidth: 1,
         borderRadius: 40,
-        borderColor: "black"
+        borderColor: "white"
     },
     buttonPress: {
         marginTop: 100,
         borderWidth: 1,
         borderRadius: 40,
-        borderColor: "gray",
+        borderColor: "white",
         backgroundColor: "#FFA103"
     },
     buttonText: {
-        paddingTop: 15,
-        paddingBottom: 15,
-        paddingRight: 100,
-        paddingLeft: 100,
-        color: "gray"
-    },
-    buttonTextPress: {
         paddingTop: 15,
         paddingBottom: 15,
         paddingRight: 100,
@@ -104,7 +95,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
     return {
-        
+
     }
 }
 
