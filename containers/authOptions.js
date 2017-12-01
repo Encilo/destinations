@@ -44,7 +44,8 @@ class AuthOptionsScreen extends Component {
     }
 
     _loginButtonClickHandler() {
-
+        // Just for testing purposes
+        this.props.navigation.navigate("Welcome");
     }
 
     _onHideUnderlay() {
@@ -240,7 +241,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 40,
         backgroundColor: "#ce8100",
-        borderColor: "white",
+        borderColor: "transparent",
         width: (window.width / 1.2),
         alignItems: "center",
         height: 40,

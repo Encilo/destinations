@@ -60,12 +60,14 @@ class ForgotPasswordModal extends Component {
                     </View>
                     <View style={styles.alignCenter}>
                         <Text style={[styles.alignCenter, styles.modalTitle]}>Forgot password</Text>
-                        <Text style={[styles.marginTop30]}>Please enter your email address. If you don't remember {"\n"}
+                        <Text style={[styles.marginTop30, {textAlign: "center"}]}>Please enter your email address. If you don't remember {"\n"}
                             it, contact our<Text style={{ fontWeight: "bold" }}> Support.</Text>
                         </Text>
                     </View>
                     <KeyboardAvoidingView behavior="padding">
-                        <TextInput style={[styles.marginTop30, styles.emailInput]} placeholder="Email" />
+                        <TextInput style={[styles.marginTop30, styles.emailInput]} 
+                            placeholder="Email"
+                            underlineColorAndroid="transparent" />
                         <Button
                             buttonStyle={this.state.resetPasswordButtonPressed ? styles.resetPasswordButtonPressed : styles.resetPasswordButton}
                             textStyle={styles.resetPasswordButtonText}

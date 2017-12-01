@@ -7,7 +7,7 @@ import { ActionCreators } from '../actions';
 
 const window = Dimensions.get("window");
 
-class WelcomeScreen extends Component {
+export default class GetStartedScreen extends Component {
 
     constructor(props) {
         super(props);
@@ -36,7 +36,7 @@ class WelcomeScreen extends Component {
     render() {
         return (
             <ImageBackground style={styles.container}
-                source={require('../images/welcome-bckgrd.jpg')}>
+                source={require('../images/getstarted-bckgrd.jpg')}>
                 <View style={styles.textContainer}>
                     <Text style={styles.textTitle}>
                         Great Places
@@ -71,7 +71,8 @@ const styles = StyleSheet.create({
     textDescription: {
         color: "white",
         width: (window.width / 1.3),
-        marginTop: (window.height / 40)
+        marginTop: (window.height / 40),
+        textAlign: "center"
     },
     button: {
         marginTop: (window.height / 10),
@@ -85,7 +86,7 @@ const styles = StyleSheet.create({
         marginTop: (window.height / 10),
         borderWidth: 1,
         borderRadius: 40,
-        borderColor: "white",
+        borderColor: "transparent",
         backgroundColor: "#FFA103",
         width: (window.width / 1.3),
         alignItems: "center"
@@ -100,15 +101,3 @@ const styles = StyleSheet.create({
         alignItems: "center"
     }
 })
-
-function mapStateToProps(state) {
-    return {
-
-    }
-}
-
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators(ActionCreators, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WelcomeScreen);
