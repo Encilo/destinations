@@ -165,7 +165,7 @@ class AuthOptionsScreen extends Component {
                             buttonHideUnderlay={this._onHideUnderlaySignup} />
                     </View>
                 </View>
-                <ForgotPasswordModal />
+                <ForgotPasswordModal {...this.props} />
             </ImageBackground>
         )
     }

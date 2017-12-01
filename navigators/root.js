@@ -2,6 +2,7 @@ import { StackNavigator, addNavigationHelpers } from 'react-navigation';
 import GetStartedScreen from '../components/getStarted'
 import AuthOptionsScreen from '../containers/authOptions';
 import WelcomeScreen from '../components/welcome';
+import ResetPassword from '../containers/resetPassword';
 
 const RootNavigator = StackNavigator({
     GetStarted: {
@@ -20,6 +21,12 @@ const RootNavigator = StackNavigator({
         screen: WelcomeScreen,
         navigationOptions: {
             header: null,
+        }
+    },
+    ResetPassword: {
+        screen: ResetPassword,
+        navigationOptions: {
+            header: null
         }
     }
 });

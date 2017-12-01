@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableHighlight, KeyboardAvoidingView, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, KeyboardAvoidingView, 
+    Dimensions, Keyboard } from 'react-native';
 import Modal from 'react-native-modalbox';
 import Button from '../components/button';
 import { connect } from 'react-redux';
@@ -28,7 +29,9 @@ class ForgotPasswordModal extends Component {
     }
 
     _resetPasswordButtonClickHandler() {
-
+        // Just for testing purposes
+        Keyboard.dismiss();
+        this.props.navigation.navigate("ResetPassword");
     }
 
     __onShowUnderlayResetPassword() {
@@ -60,14 +63,16 @@ class ForgotPasswordModal extends Component {
                     </View>
                     <View style={styles.alignCenter}>
                         <Text style={[styles.alignCenter, styles.modalTitle]}>Forgot password</Text>
-                        <Text style={[styles.marginTop30, {textAlign: "center"}]}>Please enter your email address. If you don't remember {"\n"}
+                        <Text style={[styles.marginTop30, { textAlign: "center" }]}>Please enter your email address. If you don't remember {"\n"}
                             it, contact our<Text style={{ fontWeight: "bold" }}> Support.</Text>
                         </Text>
                     </View>
-                    <KeyboardAvoidingView behavior="padding">
-                        <TextInput style={[styles.marginTop30, styles.emailInput]} 
+                    <View>
+                        <TextInput style={[styles.marginTop30, styles.emailInput]}
                             placeholder="Email"
-                            underlineColorAndroid="transparent" />
+                            underlineColorAndroid="transparent"
+                            autoFocus={true}
+                            keyboardType="email-address" />
                         <Button
                             buttonStyle={this.state.resetPasswordButtonPressed ? styles.resetPasswordButtonPressed : styles.resetPasswordButton}
                             textStyle={styles.resetPasswordButtonText}
@@ -75,7 +80,7 @@ class ForgotPasswordModal extends Component {
                             clickHandler={this._resetPasswordButtonClickHandler}
                             buttonShowUnderlay={this.__onShowUnderlayResetPassword}
                             buttonHideUnderlay={this._onHideUnderlayResetPassword} />
-                    </KeyboardAvoidingView>
+                    </View>
                 </View>
             </Modal>
         )
