@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, Text, StyleSheet, ImageBackground, Dimensions } from 'react-native';
 import Button from '../components/button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
+
+const window = Dimensions.get("window");
 
 class WelcomeScreen extends Component {
 
@@ -35,19 +37,21 @@ class WelcomeScreen extends Component {
         return (
             <ImageBackground style={styles.container}
                 source={require('../images/welcome-bckgrd.jpg')}>
-                <Text style={styles.textTitle}>
-                    Great Places
-                </Text>
-                <Text style={styles.textDescription}>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
-                </Text>
-                <Button buttonStyle={this.state.pressStatus ? styles.buttonPress : styles.button}
-                    textStyle={styles.buttonText}
-                    buttonText={"Get started"}
-                    clickHandler={this._getStartedClickHandler}
-                    buttonShowUnderlay={this._onShowUnderlay}
-                    buttonHideUnderlay={this._onHideUnderlay} />
+                <View style={styles.textContainer}>
+                    <Text style={styles.textTitle}>
+                        Great Places
+                    </Text>
+                    <Text style={styles.textDescription}>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                    </Text>
+                    <Button buttonStyle={this.state.pressStatus ? styles.buttonPress : styles.button}
+                        textStyle={styles.buttonText}
+                        buttonText={"Get started"}
+                        clickHandler={this._getStartedClickHandler}
+                        buttonShowUnderlay={this._onShowUnderlay}
+                        buttonHideUnderlay={this._onHideUnderlay} />
+                </View>
             </ImageBackground>
         )
     }
@@ -61,35 +65,39 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     textTitle: {
-        marginTop: 300,
         fontSize: 24,
-        color: "white"
+        color: "white",
     },
     textDescription: {
-        paddingTop: 30,
-        paddingLeft: 40,
-        paddingRight: 40,
-        color: "white"
+        color: "white",
+        width: (window.width / 1.3),
+        marginTop: (window.height / 40)
     },
     button: {
-        marginTop: 100,
-        borderWidth: 1,
-        borderRadius: 40,
-        borderColor: "white"
-    },
-    buttonPress: {
-        marginTop: 100,
+        marginTop: (window.height / 10),
         borderWidth: 1,
         borderRadius: 40,
         borderColor: "white",
-        backgroundColor: "#FFA103"
+        width: (window.width / 1.3),
+        alignItems: "center"
+    },
+    buttonPress: {
+        marginTop: (window.height / 10),
+        borderWidth: 1,
+        borderRadius: 40,
+        borderColor: "white",
+        backgroundColor: "#FFA103",
+        width: (window.width / 1.3),
+        alignItems: "center"
     },
     buttonText: {
         paddingTop: 15,
         paddingBottom: 15,
-        paddingRight: 100,
-        paddingLeft: 100,
         color: "white"
+    },
+    textContainer: {
+        marginTop: (window.height / 2),
+        alignItems: "center"
     }
 })
 

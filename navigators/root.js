@@ -1,5 +1,5 @@
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
-import WelcomeScreen from '../containers/welcome'
+import WelcomeScreen from '../containers/getStarted'
 import AuthOptionsScreen from '../containers/authOptions';
 
 const RootNavigator = StackNavigator({

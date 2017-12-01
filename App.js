@@ -26,7 +26,9 @@ function configureStore(initialState) {
 
 // Defining initial state
 const initialState = {
-  counter: 0
+  forgotPasswordModal: {
+    isVisible: false
+  }
 }
 
 const store = configureStore(initialState);

@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import {
     View, Text, StyleSheet, ImageBackground, TextInput, TouchableHighlight
-    , KeyboardAvoidingView, Image
+    , KeyboardAvoidingView, Image, Dimensions
 } from 'react-native';
 import CheckBox from 'react-native-checkbox';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import Button from '../components/button';
+import ForgotPasswordModal from '../containers/forgotPasswordModal'
+
+const window = Dimensions.get("window");
 
 class AuthOptionsScreen extends Component {
 
@@ -37,7 +40,7 @@ class AuthOptionsScreen extends Component {
     }
 
     _forgotPasswordClickHandler() {
-
+        this.props.openForgotPasswordModal();
     }
 
     _loginButtonClickHandler() {
@@ -76,7 +79,7 @@ class AuthOptionsScreen extends Component {
         return (
             <ImageBackground style={styles.container}
                 source={require('../images/authoptions-bckgrd.jpg')}>
-                <View style={styles.row}>
+                <View style={[styles.row, styles.headerContainer]}>
                     <View>
                         <Text style={styles.title}>
                             DESTINATIONS {"\n"}
@@ -91,87 +94,88 @@ class AuthOptionsScreen extends Component {
                         </Text>
                     </View>
                 </View>
-                <TextInput style={styles.usernameInput} placeholder="Username"
-                    placeholderTextColor="white"
-                    underlineColorAndroid="transparent" />
-                <TextInput style={styles.passwordInput} placeholder="Password"
-                    placeholderTextColor="white"
-                    underlineColorAndroid="transparent"
-                    secureTextEntry={true} />
-                <View style={styles.row}>
-                    <CheckBox checkboxStyle={styles.checkBoxStyle}
-                        labelStyle={styles.checkboxLabel}
-                        label="Remember me"
-                        checked={this.state.rememberMe}
-                        checkedImage={require('../images/checkmark.png')}
-                        onChange={this._rememberMeClickHandler} />
-                    <TouchableHighlight style={styles.forgotPwdLinkContainer}
-                        onPress={this._forgotPasswordClickHandler}
-                        underlayColor="transparent" >
-                        <Text style={styles.forgotPwdLink}>
-                            Forgot password?
-                        </Text>
-                    </TouchableHighlight>
+                <KeyboardAvoidingView behavior="padding">
+                    <View style={[styles.rowHeight, { alignItems: "center" }]}>
+                        <TextInput style={styles.usernameInput}
+                            placeholder="Username"
+                            placeholderTextColor="white"
+                            underlineColorAndroid="transparent"
+                            keyboardType="email-address"
+                            returnKeyType="next"
+                            onSubmitEditing={() => { this.refs.pwd.focus() }} />
+                        <TextInput style={styles.passwordInput}
+                            ref="pwd"
+                            placeholder="Password"
+                            placeholderTextColor="white"
+                            underlineColorAndroid="transparent"
+                            secureTextEntry={true}
+                            returnKeyType="go" />
+                        <View style={[styles.row, styles.marginTop10, { width: (window.width / 1.2) }]}>
+                            <View style={{ flex: 1 }}>
+                                <CheckBox checkboxStyle={styles.checkBoxStyle}
+                                    labelStyle={styles.checkboxLabel}
+                                    label="Remember me"
+                                    checked={this.state.rememberMe}
+                                    checkedImage={require('../images/checkmark.png')}
+                                    onChange={this._rememberMeClickHandler} />
+                            </View>
+                            <View style={{ flex: 1 }}>
+                                <TouchableHighlight
+                                    onPress={this._forgotPasswordClickHandler}
+                                    underlayColor="transparent" >
+                                    <Text style={styles.forgotPwdLink}>
+                                        Forgot password?
+                                </Text>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                        <View style={styles.marginTop10}>
+                            <Button
+                                buttonStyle={this.state.loginPressed ? styles.loginButtonPressed : styles.loginButton}
+                                textStyle={styles.loginButtonText}
+                                buttonText={"Login"}
+                                clickHandler={this._loginButtonClickHandler}
+                                buttonShowUnderlay={this._onShowUnderlay}
+                                buttonHideUnderlay={this._onHideUnderlay} />
+                        </View>
+                    </View>
+                </KeyboardAvoidingView>
+                <View style={[styles.rowHeight, { alignItems: "center" }]}>
+                    <Text style={styles.connectLabel}>
+                        or connect with
+                    </Text>
+                    <View style={[styles.row, { marginTop: (window.height / 3) / 6 }]}>
+                        <TouchableHighlight style={styles.facebookIcon}
+                            onPress={this._facebookIconClickHandler}>
+                            <Image source={require('../images/facebook.png')} />
+                        </TouchableHighlight>
+                        <TouchableHighlight style={styles.twitterIcon}
+                            onPress={this._twitterIconClickHandler}>
+                            <Image source={require('../images/twitter.png')} />
+                        </TouchableHighlight>
+                    </View>
+                    <View style={{ marginTop: (window.height / 3) / 6 }}>
+                        <Button
+                            buttonStyle={this.state.signupPressed ? styles.signupButtonPressed : styles.signupButton}
+                            textStyle={styles.signupButtonText}
+                            buttonText={"Sign Up with email"}
+                            clickHandler={this._signupButtonClickHandler}
+                            buttonShowUnderlay={this._onShowUnderlaySignup}
+                            buttonHideUnderlay={this._onHideUnderlaySignup} />
+                    </View>
                 </View>
-                <Button
-                    buttonStyle={this.state.loginPressed ? styles.loginButtonPressed : styles.loginButton}
-                    textStyle={styles.loginButtonText}
-                    buttonText={"Login"}
-                    clickHandler={this._loginButtonClickHandler}
-                    buttonShowUnderlay={this._onShowUnderlay}
-                    buttonHideUnderlay={this._onHideUnderlay} />
-                <Text style={styles.connectLabel}>
-                    or connect with
-                </Text>
-                <View style={styles.row}>
-                    <TouchableHighlight style={styles.facebookIcon}
-                        onPress={this._facebookIconClickHandler}>
-                        <Image source={require('../images/facebook.png')} />
-                    </TouchableHighlight>
-                    <TouchableHighlight style={styles.twitterIcon}
-                        onPress={this._twitterIconClickHandler}>
-                        <Image source={require('../images/twitter.png')} />
-                    </TouchableHighlight>
-                </View>
-                <Button
-                    buttonStyle={this.state.signupPressed ? styles.signupButtonPressed : styles.signupButton}
-                    textStyle={styles.signupButtonText}
-                    buttonText={"Sign Up with email"}
-                    clickHandler={this._signupButtonClickHandler}
-                    buttonShowUnderlay={this._onShowUnderlaySignup}
-                    buttonHideUnderlay={this._onHideUnderlaySignup} />
+                <ForgotPasswordModal />
             </ImageBackground>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    alignColumnContent: {
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    alignRowContent: {
-        alignItems: "center"
-    },
-    column1: {
-        flex: 1,
-        flexDirection: "column",
-        alignItems: "center"
-    },
-    column2: {
-        flex: 2,
-        flexDirection: "column",
-        alignItems: "center"
-    },
-    column3: {
-        flex: 3,
-        flexDirection: "column",
-        alignItems: "center"
-    },
     container: {
         flex: 1,
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "center"
     },
     title: {
         color: "white",
@@ -184,7 +188,6 @@ const styles = StyleSheet.create({
     },
     row: {
         flexDirection: "row",
-        flex: 1,
         alignItems: "center"
     },
     rectangleContainer: {
@@ -195,16 +198,17 @@ const styles = StyleSheet.create({
     },
     rectangleContent: {
         color: "white",
-        paddingLeft: 10,
-        paddingTop: 10
+        paddingLeft: 11,
+        paddingTop: 11
     },
     usernameInput: {
         borderWidth: 1,
         borderColor: "white",
         borderRadius: 5,
         paddingLeft: 20,
-        width: 300,
-        height: 50
+        width: (window.width / 1.2),
+        height: 40,
+        color: "white"
     },
     passwordInput: {
         borderWidth: 1,
@@ -212,43 +216,51 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginTop: 10,
         paddingLeft: 20,
-        width: 300,
-        height: 50
+        width: (window.width / 1.2),
+        height: 40,
+        color: "white"
     },
     checkboxLabel: {
         color: "white",
-        paddingTop: 3
+        paddingTop: 3,
+        fontSize: 14
     },
     checkBoxStyle: {
         borderColor: "white",
-        borderWidth: 1
+        borderWidth: 1,
+        height: 20,
+        width: 20,
+        borderRadius: 4
     },
     forgotPwdLink: {
         color: "white",
-        paddingLeft: 40
+        textAlign: "right"
     },
     loginButtonPressed: {
         borderWidth: 1,
         borderRadius: 40,
-        backgroundColor: "transparent",
-        borderColor: "white"
+        backgroundColor: "#ce8100",
+        borderColor: "white",
+        width: (window.width / 1.2),
+        alignItems: "center",
+        height: 40,
+        justifyContent: "center"
     },
     loginButton: {
         borderWidth: 1,
         borderRadius: 40,
         backgroundColor: "#FFA103",
-        borderColor: "transparent"
+        borderColor: "transparent",
+        width: (window.width / 1.2),
+        alignItems: "center",
+        height: 40,
+        justifyContent: "center"
     },
     loginButtonText: {
-        paddingTop: 15,
-        paddingBottom: 15,
-        paddingRight: 130,
-        paddingLeft: 130,
         color: "white"
     },
     connectLabel: {
-        color: "white",
-        paddingTop: 30
+        color: "white"
     },
     twitterIcon: {
         marginLeft: 20
@@ -259,19 +271,33 @@ const styles = StyleSheet.create({
     signupButtonPressed: {
         borderColor: "transparent",
         borderRadius: 40,
-        backgroundColor: "#FFA103"
+        backgroundColor: "#FFA103",
+        width: (window.width / 1.2),
+        alignItems: "center",
+        height: 40,
+        justifyContent: "center"
     },
     signupButton: {
         borderWidth: 1,
         borderColor: "white",
-        borderRadius: 40
+        borderRadius: 40,
+        width: (window.width / 1.2),
+        alignItems: "center",
+        height: 40,
+        justifyContent: "center"
     },
     signupButtonText: {
-        paddingTop: 15,
-        paddingBottom: 15,
-        paddingRight: 80,
-        paddingLeft: 80,
         color: "white"
+    },
+    headerContainer: {
+        height: (window.height / 4),
+        marginTop: (window.height / 4) / 2
+    },
+    rowHeight: {
+        height: (window.height / 3)
+    },
+    marginTop10: {
+        marginTop: 10
     }
 })
 

@@ -1,9 +1,6 @@
 import { combineReducers } from 'redux';
-
-import * as counter from './counter';
-import * as users from './users';
+import * as forgotPasswordModal from './forgotPasswordModal';
 
 export default combineReducers(Object.assign(
-    counter,
-    users
+    forgotPasswordModal,
 ));
