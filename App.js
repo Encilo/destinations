@@ -28,6 +28,9 @@ function configureStore(initialState) {
 const initialState = {
   forgotPasswordModal: {
     isVisible: false
+  },
+  termsAndConditionsModal: {
+    isVisible: false
   }
 }
 

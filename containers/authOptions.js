@@ -8,7 +8,9 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import Button from '../components/button';
-import ForgotPasswordModal from '../containers/forgotPasswordModal'
+import ForgotPasswordModal from '../containers/forgotPasswordModal';
+// Just for testing
+import TermsAndConditionsModal from '../components/termsAndConditionsModal';
 
 const window = Dimensions.get("window");
 
@@ -73,7 +75,8 @@ class AuthOptionsScreen extends Component {
     }
 
     _signupButtonClickHandler() {
-
+        // Just for testing purposes
+        this.props.openTermsAndConditionsModal();
     }
 
     render() {
@@ -166,6 +169,7 @@ class AuthOptionsScreen extends Component {
                     </View>
                 </View>
                 <ForgotPasswordModal {...this.props} />
+                <TermsAndConditionsModal {...this.props} />
             </ImageBackground>
         )
     }

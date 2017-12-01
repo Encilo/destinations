@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableHighlight, KeyboardAvoidingView, 
+import { View, Text, StyleSheet, TextInput, TouchableHighlight, 
     Dimensions, Keyboard } from 'react-native';
 import Modal from 'react-native-modalbox';
 import Button from '../components/button';
