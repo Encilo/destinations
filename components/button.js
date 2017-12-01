@@ -5,7 +5,7 @@ export default class Button extends Component {
     
     render() {
         return (
-            <TouchableHighlight style={this.props.buttonStyle}
+            <TouchableHighlight style={this.props.buttonStyle}                
                 onPress={this.props.clickHandler}
                 underlayColor={this.props.buttonUnderlayColor}
                 onShowUnderlay={this.props.buttonShowUnderlay}

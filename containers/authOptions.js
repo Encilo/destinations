@@ -9,8 +9,7 @@ import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import Button from '../components/button';
 import ForgotPasswordModal from '../containers/forgotPasswordModal';
-// Just for testing
-import TermsAndConditionsModal from '../components/termsAndConditionsModal';
+import SignupModal from '../containers/signupModal';
 
 const window = Dimensions.get("window");
 
@@ -75,8 +74,7 @@ class AuthOptionsScreen extends Component {
     }
 
     _signupButtonClickHandler() {
-        // Just for testing purposes
-        this.props.openTermsAndConditionsModal();
+        this.props.openSignupModal();
     }
 
     render() {
@@ -106,14 +104,17 @@ class AuthOptionsScreen extends Component {
                             underlineColorAndroid="transparent"
                             keyboardType="email-address"
                             returnKeyType="next"
-                            onSubmitEditing={() => { this.refs.pwd.focus() }} />
+                            onSubmitEditing={() => { this.refs.pwd.focus() }}
+                            blurOnSubmit={false}
+                        />
                         <TextInput style={styles.passwordInput}
                             ref="pwd"
                             placeholder="Password"
                             placeholderTextColor="white"
                             underlineColorAndroid="transparent"
                             secureTextEntry={true}
-                            returnKeyType="go" />
+                            returnKeyType="go"
+                        />
                         <View style={[styles.row, styles.marginTop10, { width: (window.width / 1.2) }]}>
                             <View style={{ flex: 1 }}>
                                 <CheckBox checkboxStyle={styles.checkBoxStyle}
@@ -169,7 +170,7 @@ class AuthOptionsScreen extends Component {
                     </View>
                 </View>
                 <ForgotPasswordModal {...this.props} />
-                <TermsAndConditionsModal {...this.props} />
+                <SignupModal {...this.props} />
             </ImageBackground>
         )
     }

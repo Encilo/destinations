@@ -72,7 +72,8 @@ class ForgotPasswordModal extends Component {
                             placeholder="Email"
                             underlineColorAndroid="transparent"
                             autoFocus={true}
-                            keyboardType="email-address" />
+                            keyboardType="email-address"
+                            onSubmitEditing={this._resetPasswordButtonClickHandler} />
                         <Button
                             buttonStyle={this.state.resetPasswordButtonPressed ? styles.resetPasswordButtonPressed : styles.resetPasswordButton}
                             textStyle={styles.resetPasswordButtonText}

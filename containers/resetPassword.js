@@ -60,7 +60,8 @@ class ResetPassword extends Component {
                         <TextInput style={styles.input}
                             placeholder="Code"
                             placeholderTextColor="white"
-                            underlineColorAndroid="transparent" />
+                            underlineColorAndroid="transparent"
+                            onSubmitEditing={this._codeSubmitButtonClickHandler} />
                         <Button
                             buttonStyle={this.state.codeSubmitButtonPressed ? styles.buttonPressed : styles.button}
                             textStyle={styles.buttonText}
@@ -84,14 +85,17 @@ class ResetPassword extends Component {
                             underlineColorAndroid="transparent"
                             returnKeyType="next"
                             secureTextEntry={true}
-                            onSubmitEditing={() => { this.refs.cpwd.focus() }} />
+                            onSubmitEditing={() => { this.refs.cpwd.focus() }}
+                            blurOnSubmit={false}
+                        />
                         <TextInput style={styles.input}
                             ref="cpwd"
                             placeholder="Repeat password"
                             placeholderTextColor="white"
                             underlineColorAndroid="transparent"
                             secureTextEntry={true}
-                            returnKeyType="go" />
+                            returnKeyType="go"
+                            onSubmitEditing={this._resetPasswordButtonClickHandler} />
                         <Button
                             buttonStyle={this.state.resetPasswordButtonPressed ? styles.buttonPressed : styles.button}
                             textStyle={styles.buttonText}

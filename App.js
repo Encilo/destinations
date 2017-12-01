@@ -31,6 +31,9 @@ const initialState = {
   },
   termsAndConditionsModal: {
     isVisible: false
+  },
+  signupModal: {
+    isVisible: false
   }
 }
 
