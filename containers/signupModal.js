@@ -28,6 +28,7 @@ class SignupModal extends Component {
     }
 
     _closeSignupModal() {
+        this.props.closeTermsAndConditionsModal();
         this.props.closeSignupModal();
     }
 
