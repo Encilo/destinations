@@ -28,7 +28,6 @@ class SignupModal extends Component {
     }
 
     _closeSignupModal() {
-        this.props.closeTermsAndConditionsModal();
         this.props.closeSignupModal();
     }
 
@@ -51,8 +50,8 @@ class SignupModal extends Component {
                 style={styles.modal}
                 backdropPressToClose={false}
                 swipeToClose={false}
-                backButtonClose={true}
-                onClosed={this._closeSignupModal} >
+                backButtonClose={false}
+                >
                 <View style={styles.modalContent}>
                     <View style={styles.row}>
                         <View style={{ flex: 1 }}>
@@ -124,7 +123,7 @@ class SignupModal extends Component {
                     </ScrollView>
                 </View>
 
-                <TermsAndConditionsModal />
+                <TermsAndConditionsModal {...this.props} />
             </Modal>
         );
     }

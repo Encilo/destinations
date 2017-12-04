@@ -31,6 +31,7 @@ class ForgotPasswordModal extends Component {
     _resetPasswordButtonClickHandler() {
         // Just for testing purposes
         Keyboard.dismiss();
+        this.props.closeForgotPasswordModal();
         this.props.navigation.navigate("ResetPassword");
     }
 
@@ -47,10 +48,10 @@ class ForgotPasswordModal extends Component {
             <Modal isOpen={this.props.forgotPasswordModal.isVisible}
                 position={"top"}
                 style={styles.modal}
-                backdropPressToClose={true}
-                swipeToClose={true}
-                backButtonClose={true}
-                onClosed={this._closeForgotPasswordModal} >
+                backdropPressToClose={false}
+                swipeToClose={false}
+                backButtonClose={false}
+                >
                 <View style={styles.modalContent}>
                     <View style={styles.row}>
                         <View style={{ flex: 1 }}>

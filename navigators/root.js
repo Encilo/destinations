@@ -3,6 +3,7 @@ import GetStartedScreen from '../components/getStarted'
 import AuthOptionsScreen from '../containers/authOptions';
 import WelcomeScreen from '../components/welcome';
 import ResetPassword from '../containers/resetPassword';
+import FavoriteInterestsScreen from '../containers/favoriteInterests';
 
 const RootNavigator = StackNavigator({
     GetStarted: {
@@ -25,6 +26,12 @@ const RootNavigator = StackNavigator({
     },
     ResetPassword: {
         screen: ResetPassword,
+        navigationOptions: {
+            header: null
+        }
+    },
+    FavoriteInterests: {
+        screen: FavoriteInterestsScreen,
         navigationOptions: {
             header: null
         }

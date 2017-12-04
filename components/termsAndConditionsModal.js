@@ -16,7 +16,9 @@ class TermsAndConditionsModal extends Component {
     }
 
     _closeTermsAndConditionsModal() {
-        this.props.closeTermsAndConditionsModal();
+        this.props.navigation.navigate("FavoriteInterests");
+        this.props.closeSignupModal();
+        this.props.closeTermsAndConditionsModal();       
     }
 
     render() {
@@ -26,8 +28,8 @@ class TermsAndConditionsModal extends Component {
                 style={styles.modal}
                 backdropPressToClose={false}
                 swipeToClose={false}
-                backButtonClose={true}
-                onClosed={this._closeTermsAndConditionsModal} >
+                backButtonClose={false}
+                >
                 <View style={styles.modalContent}>
                     <View style={styles.row}>
                         <View style={{ flex: 1 }}>
