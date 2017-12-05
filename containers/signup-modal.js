@@ -56,11 +56,11 @@ class SignupModal extends Component {
                 position={"center"}
                 style={styles.modal}
                 backdropPressToClose={false}
-                swipeToClose={true}
+                swipeToClose={false}
                 backButtonClose={true}
                 onClosed={this._closeSignupModal} >
                 <View style={styles.modalContent}>
-                    <View style={styles.row}>
+                    <View style={[styles.row, styles.closeLinkContainer]}>
                         <View style={{ flex: 1 }}>
                             <TouchableHighlight
                                 onPress={this._triggerSignupModalClose}
@@ -69,52 +69,58 @@ class SignupModal extends Component {
                             </TouchableHighlight>
                         </View>
                     </View>
-                    <View style={styles.alignCenter}>
-                        <Text style={[styles.alignCenter, styles.modalTitle]}>Sign Up</Text>
+                    <View style={[styles.alignCenter, styles.titleContainer]}>
+                        <Text style={[styles.alignCenter, styles.modalTitle]}>
+                            Sign Up
+                        </Text>
                     </View>
-                    <ScrollView style={[styles.marginTop20]}>
-                        <TextInput style={[styles.marginTop30, styles.input]}
-                            placeholder="Username"
-                            underlineColorAndroid="transparent"
-                            returnKeyType="next"
-                            onSubmitEditing={() => { this.refs.email.focus() }}
-                            blurOnSubmit={false}
-                        />
-                        <TextInput style={[styles.marginTop20, styles.input]}
-                            ref="email"
-                            placeholder="Email"
-                            underlineColorAndroid="transparent"
-                            returnKeyType="next"
-                            keyboardType="email-address"
-                            onSubmitEditing={() => { this.refs.phone.focus() }}
-                            blurOnSubmit={false}
-                        />
-                        <TextInput style={[styles.marginTop20, styles.input]}
-                            ref="phone"
-                            placeholder="Phone"
-                            underlineColorAndroid="transparent"
-                            returnKeyType="next"
-                            keyboardType="phone-pad"
-                            onSubmitEditing={() => { this.refs.pwd.focus() }}
-                            blurOnSubmit={false}
-                        />
-                        <TextInput style={[styles.marginTop20, styles.input]}
-                            ref="pwd"
-                            placeholder="Password"
-                            underlineColorAndroid="transparent"
-                            returnKeyType="next"
-                            secureTextEntry={true}
-                            onSubmitEditing={() => { this.refs.cpwd.focus() }}
-                            blurOnSubmit={false}
-                        />
-                        <TextInput style={[styles.marginTop20, styles.input]}
-                            ref="cpwd"
-                            placeholder="Confirm password"
-                            underlineColorAndroid="transparent"
-                            returnKeyType="go"
-                            secureTextEntry={true}
-                            onSubmitEditing={this._signupButtonClickHandler}
-                        />
+                    <View style={styles.formContainer}>
+                        <ScrollView >
+                            <TextInput style={[styles.marginTop30, styles.input]}
+                                placeholder="Username"
+                                underlineColorAndroid="transparent"
+                                returnKeyType="next"
+                                onSubmitEditing={() => { this.refs.email.focus() }}
+                                blurOnSubmit={false}
+                            />
+                            <TextInput style={[styles.marginTop20, styles.input]}
+                                ref="email"
+                                placeholder="Email"
+                                underlineColorAndroid="transparent"
+                                returnKeyType="next"
+                                keyboardType="email-address"
+                                onSubmitEditing={() => { this.refs.phone.focus() }}
+                                blurOnSubmit={false}
+                            />
+                            <TextInput style={[styles.marginTop20, styles.input]}
+                                ref="phone"
+                                placeholder="Phone"
+                                underlineColorAndroid="transparent"
+                                returnKeyType="next"
+                                keyboardType="phone-pad"
+                                onSubmitEditing={() => { this.refs.pwd.focus() }}
+                                blurOnSubmit={false}
+                            />
+                            <TextInput style={[styles.marginTop20, styles.input]}
+                                ref="pwd"
+                                placeholder="Password"
+                                underlineColorAndroid="transparent"
+                                returnKeyType="next"
+                                secureTextEntry={true}
+                                onSubmitEditing={() => { this.refs.cpwd.focus() }}
+                                blurOnSubmit={false}
+                            />
+                            <TextInput style={[styles.marginTop20, styles.input]}
+                                ref="cpwd"
+                                placeholder="Confirm password"
+                                underlineColorAndroid="transparent"
+                                returnKeyType="go"
+                                secureTextEntry={true}
+                                onSubmitEditing={this._signupButtonClickHandler}
+                            />
+                        </ScrollView>
+                    </View>
+                    <View style={styles.buttonContainer}>
                         <Button
                             buttonStyle={this.state.signupButtonPressed ? styles.signupButtonPressed : styles.signupButton}
                             textStyle={styles.signupButtonText}
@@ -123,11 +129,15 @@ class SignupModal extends Component {
                             buttonShowUnderlay={this._onShowUnderlay}
                             buttonHideUnderlay={this._onHideUnderlay}
                         />
+                    </View>
+                    <View style={styles.termsAndServiceContainer}>
                         <Text style={styles.footerNote}>
                             By clicking "Sign me up" you agree to our {"\n"}
-                            <Text style={{ fontWeight: "bold" }}>Terms of Service</Text>
+                            <Text style={{ fontWeight: "bold" }}>
+                                Terms of Service
+                            </Text>
                         </Text>
-                    </ScrollView>
+                    </View>
                 </View>
 
                 <TermsAndConditionsModal {...this.props} />
@@ -182,7 +192,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 5,
         borderColor: "#D0D0D0",
-        height: 40
+        height: 50
     },
     signupButton: {
         borderWidth: 1,
@@ -191,9 +201,8 @@ const styles = StyleSheet.create({
         borderColor: "transparent",
         width: (window.width * 80 / 100),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
-        marginTop: 20
     },
     signupButtonPressed: {
         borderWidth: 1,
@@ -202,16 +211,39 @@ const styles = StyleSheet.create({
         borderColor: "transparent",
         width: (window.width * 80 / 100),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
-        marginTop: 20
     },
     signupButtonText: {
         color: "white"
     },
     footerNote: {
         textAlign: "center",
-        marginTop: 40
+    },
+    closeLinkContainer: {
+        flex: 1, 
+        justifyContent: "flex-start", 
+        alignItems: "center"
+    },
+    titleContainer: {
+        flex: 1, 
+        justifyContent: "flex-start", 
+        alignItems:"center"
+    },
+    formContainer: {
+        flex: 9, 
+        justifyContent: "center", 
+        alignItems:"center"
+    },
+    buttonContainer: {
+        flex: 2, 
+        justifyContent: "flex-start", 
+        alignItems:"center"
+    },
+    termsAndServiceContainer: {
+        flex: 1, 
+        justifyContent: "flex-start", 
+        alignItems:"center"
     }
 })
 

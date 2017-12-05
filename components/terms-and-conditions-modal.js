@@ -16,29 +16,29 @@ class TermsAndConditionsModal extends Component {
         this._triggerModalClose = this._triggerModalClose.bind(this);
     }
 
-    _triggerModalClose(){
+    _triggerModalClose() {
         this.refs.modal.close();
     }
 
     _closeTermsAndConditionsModal() {
         this.props.navigation.navigate("FavoriteInterests");
         this.props.closeSignupModal();
-        this.props.closeTermsAndConditionsModal();       
+        this.props.closeTermsAndConditionsModal();
     }
 
     render() {
         return (
-            <Modal 
+            <Modal
                 ref="modal"
                 isOpen={this.props.termsAndConditionsModal.isVisible}
                 position={"center"}
                 style={styles.modal}
                 backdropPressToClose={false}
-                swipeToClose={true}
+                swipeToClose={false}
                 backButtonClose={true}
                 onClosed={this._closeTermsAndConditionsModal} >
                 <View style={styles.modalContent}>
-                    <View style={styles.row}>
+                    <View style={[styles.row, styles.closeLinkContainer]}>
                         <View style={{ flex: 1 }}>
                             <TouchableHighlight
                                 onPress={this._triggerModalClose}
@@ -47,59 +47,63 @@ class TermsAndConditionsModal extends Component {
                             </TouchableHighlight>
                         </View>
                     </View>
-                    <View style={styles.alignCenter}>
-                        <Text style={[styles.alignCenter, styles.modalTitle]}>Terms and conditions</Text>
+                    <View style={[styles.alignCenter, styles.titleContainer]}>
+                        <Text style={[styles.alignCenter, styles.modalTitle]}>
+                            Terms and conditions
+                        </Text>
                     </View>
-                    <ScrollView style={styles.marginTop20}>
-                        <Text style={styles.textContainer}>
-                            There are many variations of passages of Lorem Ipsum 
-                            available, but the majority have suffered alteration in 
-                            some form, by injected humour, or randomised words which 
-                            don't look even slightly believable. If you are going to 
-                            use a passage of Lorem Ipsum, you need to be sure there 
-                            isn't anything embarrassing hidden in the middle of text. 
-                            All the Lorem Ipsum generators on the Internet tend to 
-                            repeat predefined chunks as necessary, making this the 
-                            first true generator on the Internet. It uses a dictionary 
-                            of over 200 Latin words, combined with a handful of model 
-                            sentence structures, to generate Lorem Ipsum which looks 
-                            reasonable. The generated Lorem Ipsum is therefore always 
-                            free from repetition, injected humour, or non-characteristic
-                             words etc.
-                        </Text>
-                        <Text style={styles.textContainer}>
-                            There are many variations of passages of Lorem Ipsum 
-                            available, but the majority have suffered alteration in 
-                            some form, by injected humour, or randomised words which 
-                            don't look even slightly believable. If you are going to 
-                            use a passage of Lorem Ipsum, you need to be sure there 
-                            isn't anything embarrassing hidden in the middle of text. 
-                            All the Lorem Ipsum generators on the Internet tend to 
-                            repeat predefined chunks as necessary, making this the 
-                            first true generator on the Internet. It uses a dictionary 
-                            of over 200 Latin words, combined with a handful of model 
-                            sentence structures, to generate Lorem Ipsum which looks 
-                            reasonable. The generated Lorem Ipsum is therefore always 
-                            free from repetition, injected humour, or non-characteristic
-                             words etc.
-                        </Text>
-                        <Text style={styles.textContainer}>
-                            There are many variations of passages of Lorem Ipsum 
-                            available, but the majority have suffered alteration in 
-                            some form, by injected humour, or randomised words which 
-                            don't look even slightly believable. If you are going to 
-                            use a passage of Lorem Ipsum, you need to be sure there 
-                            isn't anything embarrassing hidden in the middle of text. 
-                            All the Lorem Ipsum generators on the Internet tend to 
-                            repeat predefined chunks as necessary, making this the 
-                            first true generator on the Internet. It uses a dictionary 
-                            of over 200 Latin words, combined with a handful of model 
-                            sentence structures, to generate Lorem Ipsum which looks 
-                            reasonable. The generated Lorem Ipsum is therefore always 
-                            free from repetition, injected humour, or non-characteristic
-                             words etc.
-                        </Text>
-                    </ScrollView>
+                    <View style={styles.textParentContainer}>
+                        <ScrollView>
+                            <Text style={styles.textContainer}>
+                                There are many variations of passages of Lorem Ipsum
+                                available, but the majority have suffered alteration in
+                                some form, by injected humour, or randomised words which
+                                don't look even slightly believable. If you are going to
+                                use a passage of Lorem Ipsum, you need to be sure there
+                                isn't anything embarrassing hidden in the middle of text.
+                                All the Lorem Ipsum generators on the Internet tend to
+                                repeat predefined chunks as necessary, making this the
+                                first true generator on the Internet. It uses a dictionary
+                                of over 200 Latin words, combined with a handful of model
+                                sentence structures, to generate Lorem Ipsum which looks
+                                reasonable. The generated Lorem Ipsum is therefore always
+                                free from repetition, injected humour, or non-characteristic
+                                words etc.
+                            </Text>
+                            <Text style={styles.textContainer}>
+                                There are many variations of passages of Lorem Ipsum
+                                available, but the majority have suffered alteration in
+                                some form, by injected humour, or randomised words which
+                                don't look even slightly believable. If you are going to
+                                use a passage of Lorem Ipsum, you need to be sure there
+                                isn't anything embarrassing hidden in the middle of text.
+                                All the Lorem Ipsum generators on the Internet tend to
+                                repeat predefined chunks as necessary, making this the
+                                first true generator on the Internet. It uses a dictionary
+                                of over 200 Latin words, combined with a handful of model
+                                sentence structures, to generate Lorem Ipsum which looks
+                                reasonable. The generated Lorem Ipsum is therefore always
+                                free from repetition, injected humour, or non-characteristic
+                                words etc.
+                            </Text>
+                            <Text style={styles.textContainer}>
+                                There are many variations of passages of Lorem Ipsum
+                                available, but the majority have suffered alteration in
+                                some form, by injected humour, or randomised words which
+                                don't look even slightly believable. If you are going to
+                                use a passage of Lorem Ipsum, you need to be sure there
+                                isn't anything embarrassing hidden in the middle of text.
+                                All the Lorem Ipsum generators on the Internet tend to
+                                repeat predefined chunks as necessary, making this the
+                                first true generator on the Internet. It uses a dictionary
+                                of over 200 Latin words, combined with a handful of model
+                                sentence structures, to generate Lorem Ipsum which looks
+                                reasonable. The generated Lorem Ipsum is therefore always
+                                free from repetition, injected humour, or non-characteristic
+                                words etc.
+                            </Text>
+                        </ScrollView>
+                    </View>
                 </View>
             </Modal>
         );
@@ -144,8 +148,20 @@ const styles = StyleSheet.create({
         textAlign: "center",
         padding: 20
     },
-    marginTop20: {
-        marginTop: 20
+    closeLinkContainer: {
+        flex: 1, 
+        alignItems: "center", 
+        justifyContent: "flex-start"
+    },
+    titleContainer: {
+        flex: 1, 
+        alignItems: "center", 
+        justifyContent: "flex-start"
+    },
+    textParentContainer: {
+        flex: 8, 
+        alignItems: "center", 
+        justifyContent: "center"
     }
 })
 

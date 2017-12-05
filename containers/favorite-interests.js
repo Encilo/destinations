@@ -26,7 +26,7 @@ class FavoriteInterestsScreen extends Component {
         this._skipNowClickHandler = this._skipNowClickHandler.bind(this);
     }
 
-    _skipNowClickHandler(){
+    _skipNowClickHandler() {
         this.props.navigation.navigate("Welcome");
     }
 
@@ -109,7 +109,7 @@ class FavoriteInterestsScreen extends Component {
                             text={"Tours"} />
                     </View>
                 </View>
-                <View style={{alignItems: "center", marginTop: (window.height * 10 / 100)}}>
+                <View style={styles.buttonContainer}>
                     <Button
                         buttonStyle={this.state.doneButtonPressed ? styles.doneButtonPressed : styles.doneButton}
                         textStyle={styles.doneButtonText}
@@ -117,16 +117,16 @@ class FavoriteInterestsScreen extends Component {
                         clickHandler={this._doneButtonClickHandler}
                         buttonShowUnderlay={this._onShowUnderlay}
                         buttonHideUnderlay={this._onHideUnderlay} />
-                    <TouchableHighlight 
+                </View>
+                <View style={styles.linkContainer}>
+                    <TouchableHighlight
                         onPress={this._skipNowClickHandler}
-                        underlayColor="transparent"
-                        >
+                        underlayColor="transparent">
                         <Text style={{ color: "#A5A6AB", marginTop: 20 }}>
                             Skip now and configure this later
                         </Text>
                     </TouchableHighlight>
                 </View>
-
             </ImageBackground>
         );
     }
@@ -139,7 +139,9 @@ const styles = StyleSheet.create({
         alignItems: "center"
     },
     titleContainer: {
-        marginTop: (window.height * 10 / 100)
+        flex: 4,
+        alignItems: "center",
+        justifyContent: "flex-end"
     },
     title: {
         color: "white",
@@ -158,7 +160,8 @@ const styles = StyleSheet.create({
     },
     interestsContainer: {
         alignItems: "center",
-        marginTop: (window.height * 5 / 100)
+        justifyContent: "flex-end",
+        flex: 8
     },
     doneButton: {
         borderWidth: 1,
@@ -167,7 +170,7 @@ const styles = StyleSheet.create({
         borderColor: "white",
         width: (window.width * 70 / 100),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
     },
     doneButtonPressed: {
@@ -177,11 +180,21 @@ const styles = StyleSheet.create({
         borderColor: "transparent",
         width: (window.width * 70 / 100),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
     },
     doneButtonText: {
         color: "white"
+    },
+    linkContainer: {
+        flex: 2, 
+        justifyContent: "center", 
+        alignItems: "center"
+    },
+    buttonContainer: {
+        flex: 2, 
+        justifyContent: "flex-end", 
+        alignItems: "center"
     }
 })
 

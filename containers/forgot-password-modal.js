@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, TouchableHighlight, 
-    Dimensions, Keyboard } from 'react-native';
+import {
+    View, Text, StyleSheet, TextInput, TouchableHighlight, Dimensions, Keyboard
+} from 'react-native';
 import Modal from 'react-native-modalbox';
 import Button from '../components/button';
 import { connect } from 'react-redux';
@@ -25,7 +26,7 @@ class ForgotPasswordModal extends Component {
         this._triggerModalClose = this._triggerModalClose.bind(this);
     }
 
-    _triggerModalClose(){
+    _triggerModalClose() {
         this.refs.modal.close();
     }
 
@@ -50,17 +51,17 @@ class ForgotPasswordModal extends Component {
 
     render() {
         return (
-            <Modal 
+            <Modal
                 ref="modal"
                 isOpen={this.props.forgotPasswordModal.isVisible}
                 position={"top"}
                 style={styles.modal}
                 backdropPressToClose={false}
-                swipeToClose={true}
+                swipeToClose={false}
                 backButtonClose={true}
                 onClosed={this._closeForgotPasswordModal} >
                 <View style={styles.modalContent}>
-                    <View style={styles.row}>
+                    <View style={[styles.row, styles.closeLinkContainer]}>
                         <View style={{ flex: 1 }}>
                             <TouchableHighlight
                                 onPress={this._triggerModalClose}
@@ -69,14 +70,18 @@ class ForgotPasswordModal extends Component {
                             </TouchableHighlight>
                         </View>
                     </View>
-                    <View style={styles.alignCenter}>
-                        <Text style={[styles.alignCenter, styles.modalTitle]}>Forgot password</Text>
-                        <Text style={[styles.marginTop30, { textAlign: "center" }]}>Please enter your email address. If you don't remember {"\n"}
-                            it, contact our<Text style={{ fontWeight: "bold" }}> Support.</Text>
+                    <View style={styles.titleContainer}>
+                        <Text style={[styles.alignCenter, styles.modalTitle]}>
+                            Forgot password
+                        </Text>
+                        <Text style={styles.titleDescription}>
+                            Please enter your email address. If you don't remember {"\n"}
+                            it, contact our
+                            <Text style={{ fontWeight: "bold" }}> Support.</Text>
                         </Text>
                     </View>
-                    <View>
-                        <TextInput style={[styles.marginTop30, styles.emailInput]}
+                    <View style={styles.submitContainer}>
+                        <TextInput style={[styles.emailInput]}
                             placeholder="Email"
                             underlineColorAndroid="transparent"
                             autoFocus={true}
@@ -108,12 +113,12 @@ const styles = StyleSheet.create({
     modalContent: {
         flex: 1,
         flexDirection: "column",
-        alignItems: "center"
+        alignItems: "center",
+        justifyContent: "space-between"
     },
     modalCloseLink: {
         textAlign: "right",
         marginRight: 20,
-        marginTop: 10,
         fontWeight: "bold",
         color: "black",
         fontSize: 30
@@ -126,30 +131,27 @@ const styles = StyleSheet.create({
         color: "black",
         fontWeight: "bold",
     },
-    marginTop30: {
-        marginTop: 30
-    },
     resetPasswordButtonPressed: {
         borderWidth: 1,
         borderRadius: 40,
         backgroundColor: "#ce8100",
         borderColor: "transparent",
-        width: (window.width / 1.2),
+        width: (window.width * 80 / 100),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
-        marginTop: 30
+        marginTop: 20
     },
     resetPasswordButton: {
         borderWidth: 1,
         borderRadius: 40,
         backgroundColor: "#FFA103",
         borderColor: "transparent",
-        width: (window.width / 1.2),
+        width: (window.width * 80 / 100),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
-        marginTop: 30
+        marginTop: 20
     },
     resetPasswordButtonText: {
         color: "white"
@@ -164,6 +166,23 @@ const styles = StyleSheet.create({
         borderColor: "#D0D0D0",
         height: 50,
         paddingLeft: 20
+    },
+    closeLinkContainer: {
+        flex: 1,
+        justifyContent: "flex-start"
+    },
+    titleContainer: {
+        flex: 1,
+        alignItems: "center",
+        justifyContent: "flex-start"
+    },
+    titleDescription: {
+        textAlign: "center",
+        paddingTop: 20
+    },
+    submitContainer: {
+        flex: 2,
+        justifyContent: "center"
     }
 })
 

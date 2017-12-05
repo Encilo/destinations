@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, KeyboardAvoidingView, Dimensions, ImageBackground } from 'react-native';
+import { View, StyleSheet, TextInput, KeyboardAvoidingView, Dimensions, ImageBackground } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
 import Button from '../components/button';
+import Logo from '../components/logo';
 
 const window = Dimensions.get("window");
 
@@ -25,6 +26,11 @@ class ResetPassword extends Component {
         this._resetPasswordButtonClickHandler = this._resetPasswordButtonClickHandler.bind(this);
         this._onShowUnderlayResetPassword = this._onShowUnderlayResetPassword.bind(this);
         this._onHideUnderlayResetPassword = this._onHideUnderlayResetPassword.bind(this);
+        this._focusConfirmPassword = this._focusConfirmPassword.bind(this);
+    }
+
+    _focusConfirmPassword(){
+        this.refs.cpwd.focus();
     }
 
     _codeSubmitButtonClickHandler() {
@@ -55,12 +61,14 @@ class ResetPassword extends Component {
     _renderCode() {
         if (!this.state.codeValid)
             return (
-                <KeyboardAvoidingView behavior="position">
-                    <View style={[styles.center, {}]}>
+                <View style={styles.codeContainer}>
+                    <KeyboardAvoidingView behavior="position">
                         <TextInput style={styles.input}
                             placeholder="Code"
                             placeholderTextColor="white"
                             underlineColorAndroid="transparent"
+                            keyboardType="numeric"
+                            returnKeyType="go"
                             onSubmitEditing={this._codeSubmitButtonClickHandler} />
                         <Button
                             buttonStyle={this.state.codeSubmitButtonPressed ? styles.buttonPressed : styles.button}
@@ -69,23 +77,23 @@ class ResetPassword extends Component {
                             clickHandler={this._codeSubmitButtonClickHandler}
                             buttonShowUnderlay={this._onShowUnderlayCodeSubmit}
                             buttonHideUnderlay={this._onHideUnderlayCodeSubmit} />
-                    </View>
-                </KeyboardAvoidingView>
+                    </KeyboardAvoidingView>
+                </View>
             );
     }
 
     _renderResetPassword() {
         if (this.state.codeValid)
             return (
-                <KeyboardAvoidingView behavior="position">
-                    <View style={[styles.center, {}]}>
+                <View style={styles.passwordContainer}>
+                    <KeyboardAvoidingView behavior="position">
                         <TextInput style={styles.input}
                             placeholder="New password"
                             placeholderTextColor="white"
                             underlineColorAndroid="transparent"
                             returnKeyType="next"
                             secureTextEntry={true}
-                            onSubmitEditing={() => { this.refs.cpwd.focus() }}
+                            onSubmitEditing={this._focusConfirmPassword}
                             blurOnSubmit={false}
                         />
                         <TextInput style={styles.input}
@@ -103,8 +111,8 @@ class ResetPassword extends Component {
                             clickHandler={this._resetPasswordButtonClickHandler}
                             buttonShowUnderlay={this._onShowUnderlayResetPassword}
                             buttonHideUnderlay={this._onHideUnderlayResetPassword} />
-                    </View>
-                </KeyboardAvoidingView>
+                    </KeyboardAvoidingView>
+                </View>
             );
     }
 
@@ -113,19 +121,7 @@ class ResetPassword extends Component {
             <ImageBackground style={styles.container}
                 source={require("../images/authoptions-bckgrd.jpg")}>
                 <View style={[styles.row, styles.headerContainer]}>
-                    <View>
-                        <Text style={styles.title}>
-                            DESTINATIONS {"\n"}
-                        </Text>
-                        <Text style={styles.titleSubtitle}>
-                            Discover Bosnia and Herzegovina
-                        </Text>
-                    </View>
-                    <View style={styles.rectangleContainer}>
-                        <Text style={styles.rectangleContent}>
-                            BA
-                        </Text>
-                    </View>
+                    <Logo />
                 </View>
                 {this._renderCode()}
                 {this._renderResetPassword()}
@@ -141,32 +137,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     headerContainer: {
-        height: (window.height / 4),
-        marginTop: (window.height / 4) / 2
+        flex: 3,
+        alignItems: "center",
+        justifyContent: "center"
     },
     row: {
         flexDirection: "row",
         alignItems: "center"
-    },
-    title: {
-        color: "white",
-        fontSize: 25
-    },
-    titleSubtitle: {
-        fontSize: 9,
-        paddingLeft: 30,
-        color: "white"
-    },
-    rectangleContainer: {
-        width: 40,
-        height: 40,
-        backgroundColor: "#FFA103",
-        marginTop: 5
-    },
-    rectangleContent: {
-        color: "white",
-        paddingLeft: 11,
-        paddingTop: 11
     },
     input: {
         borderWidth: 1,
@@ -174,8 +151,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginTop: 10,
         paddingLeft: 20,
-        width: (window.width / 1.5),
-        height: 40,
+        width: (window.width * 70 / 100),
+        height: 50,
         color: "white"
     },
     button: {
@@ -183,9 +160,9 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         backgroundColor: "#FFA103",
         borderColor: "transparent",
-        width: (window.width / 1.5),
+        width: (window.width * 70 / 100),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
         marginTop: 20
     },
@@ -194,16 +171,23 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         backgroundColor: "#ce8100",
         borderColor: "transparent",
-        width: (window.width / 1.5),
+        width: (window.width * 70 / 100),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
         marginTop: 20
     },
     buttonText: {
         color: "white"
     },
-    center: {
+    codeContainer: {
+        flex: 5,
+        justifyContent: "flex-start",
+        alignItems: "center"
+    },
+    passwordContainer: {
+        flex: 5,
+        justifyContent: "flex-start",
         alignItems: "center"
     }
 })

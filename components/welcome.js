@@ -52,6 +52,7 @@ export default class WelcomeScreen extends Component {
         return (
             <ImageBackground style={styles.container}
                 source={require('../images/welcome-bckgrd.jpg')}>
+                <View style={{ flex: 6 }}></View>
                 <View style={styles.titleContainer}>
                     <Text style={styles.title}>
                         Welcome!
@@ -61,7 +62,7 @@ export default class WelcomeScreen extends Component {
                         wish you a happy trip and enjoy your stay!
                     </Text>
                 </View>
-                <View style={styles.buttonsContainer}>
+                <View style={styles.exploreButtonContainer}>
                     <Button
                         buttonStyle={this.state.exploreButtonPressed ? styles.exploreButtonPressed : styles.exploreButton}
                         textStyle={styles.exploreButtonText}
@@ -69,6 +70,8 @@ export default class WelcomeScreen extends Component {
                         clickHandler={this._exploreButtonClickHandler}
                         buttonShowUnderlay={this._onShowUnderlay}
                         buttonHideUnderlay={this._onHideUnderlay} />
+                </View>
+                <View style={styles.discoverButtonContainer}>
                     <Button
                         buttonStyle={this.state.discoverButtonPressed ? styles.discoverButtonPressed : styles.discoverButton}
                         textStyle={styles.discoverButtonText}
@@ -107,7 +110,7 @@ const styles = StyleSheet.create({
         borderColor: "transparent",
         width: (window.width / 1.2),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center"
     },
     exploreButtonPressed: {
@@ -117,7 +120,7 @@ const styles = StyleSheet.create({
         borderColor: "transparent",
         width: (window.width / 1.2),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center"
     },
     discoverButton: {
@@ -126,7 +129,7 @@ const styles = StyleSheet.create({
         borderRadius: 40,
         width: (window.width / 1.2),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
         marginTop: 20
     },
@@ -136,7 +139,7 @@ const styles = StyleSheet.create({
         backgroundColor: "#FFA103",
         width: (window.width / 1.2),
         alignItems: "center",
-        height: 40,
+        height: 50,
         justifyContent: "center",
         marginTop: 20
     },
@@ -150,7 +153,18 @@ const styles = StyleSheet.create({
         marginBottom: 40
     },
     titleContainer: {
-        marginTop: (window.height / 2)
+        flex: 3,
+    },
+    exploreButtonContainer: {
+        flex: 1, 
+        alignItems: "center", 
+        justifyContent: "flex-end"
+    },
+    discoverButtonContainer: {
+        marginBottom: 40, 
+        flex: 1, 
+        alignItems: "center", 
+        justifyContent: "flex-start"
     }
 })
 
