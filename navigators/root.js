@@ -1,9 +1,9 @@
 import { StackNavigator, addNavigationHelpers } from 'react-navigation';
-import GetStartedScreen from '../components/getStarted'
-import AuthOptionsScreen from '../containers/authOptions';
+import GetStartedScreen from '../components/get-started'
+import AuthOptionsScreen from '../containers/auth-options';
 import WelcomeScreen from '../components/welcome';
-import ResetPassword from '../containers/resetPassword';
-import FavoriteInterestsScreen from '../containers/favoriteInterests';
+import ResetPassword from '../containers/reset-password';
+import FavoriteInterestsScreen from '../containers/favorite-interests';
 
 const RootNavigator = StackNavigator({
     GetStarted: {

@@ -8,7 +8,7 @@ import Button from '../components/button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
-import TermsAndConditionsModal from '../components/termsAndConditionsModal';
+import TermsAndConditionsModal from '../components/terms-and-conditions-modal';
 
 const window = Dimensions.get("window");
 
@@ -25,6 +25,7 @@ class SignupModal extends Component {
         this._signupButtonClickHandler = this._signupButtonClickHandler.bind(this);
         this._onShowUnderlay = this._onShowUnderlay.bind(this);
         this._onHideUnderlay = this._onHideUnderlay.bind(this);
+        this._triggerSignupModalClose = this._triggerSignupModalClose.bind(this);
     }
 
     _closeSignupModal() {
@@ -43,20 +44,26 @@ class SignupModal extends Component {
         this.setState({ signupButtonPressed: false });
     }
 
+    _triggerSignupModalClose() {
+        this.refs.modal.close();
+    }
+
     render() {
         return (
-            <Modal isOpen={this.props.signupModal.isVisible}
+            <Modal
+                ref="modal"
+                isOpen={this.props.signupModal.isVisible}
                 position={"center"}
                 style={styles.modal}
                 backdropPressToClose={false}
-                swipeToClose={false}
-                backButtonClose={false}
-                >
+                swipeToClose={true}
+                backButtonClose={true}
+                onClosed={this._closeSignupModal} >
                 <View style={styles.modalContent}>
                     <View style={styles.row}>
                         <View style={{ flex: 1 }}>
                             <TouchableHighlight
-                                onPress={this._closeSignupModal}
+                                onPress={this._triggerSignupModalClose}
                                 underlayColor="transparent">
                                 <Text style={styles.modalCloseLink}>X</Text>
                             </TouchableHighlight>

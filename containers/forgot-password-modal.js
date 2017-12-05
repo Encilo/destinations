@@ -22,6 +22,11 @@ class ForgotPasswordModal extends Component {
         this._resetPasswordButtonClickHandler = this._resetPasswordButtonClickHandler.bind(this);
         this.__onShowUnderlayResetPassword = this.__onShowUnderlayResetPassword.bind(this);
         this._onHideUnderlayResetPassword = this._onHideUnderlayResetPassword.bind(this);
+        this._triggerModalClose = this._triggerModalClose.bind(this);
+    }
+
+    _triggerModalClose(){
+        this.refs.modal.close();
     }
 
     _closeForgotPasswordModal() {
@@ -45,18 +50,20 @@ class ForgotPasswordModal extends Component {
 
     render() {
         return (
-            <Modal isOpen={this.props.forgotPasswordModal.isVisible}
+            <Modal 
+                ref="modal"
+                isOpen={this.props.forgotPasswordModal.isVisible}
                 position={"top"}
                 style={styles.modal}
                 backdropPressToClose={false}
-                swipeToClose={false}
-                backButtonClose={false}
-                >
+                swipeToClose={true}
+                backButtonClose={true}
+                onClosed={this._closeForgotPasswordModal} >
                 <View style={styles.modalContent}>
                     <View style={styles.row}>
                         <View style={{ flex: 1 }}>
                             <TouchableHighlight
-                                onPress={this._closeForgotPasswordModal}
+                                onPress={this._triggerModalClose}
                                 underlayColor="transparent">
                                 <Text style={styles.modalCloseLink}>X</Text>
                             </TouchableHighlight>

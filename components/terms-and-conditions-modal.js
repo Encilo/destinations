@@ -13,6 +13,11 @@ class TermsAndConditionsModal extends Component {
         super(props);
 
         this._closeTermsAndConditionsModal = this._closeTermsAndConditionsModal.bind(this);
+        this._triggerModalClose = this._triggerModalClose.bind(this);
+    }
+
+    _triggerModalClose(){
+        this.refs.modal.close();
     }
 
     _closeTermsAndConditionsModal() {
@@ -23,18 +28,20 @@ class TermsAndConditionsModal extends Component {
 
     render() {
         return (
-            <Modal isOpen={this.props.termsAndConditionsModal.isVisible}
+            <Modal 
+                ref="modal"
+                isOpen={this.props.termsAndConditionsModal.isVisible}
                 position={"center"}
                 style={styles.modal}
                 backdropPressToClose={false}
-                swipeToClose={false}
-                backButtonClose={false}
-                >
+                swipeToClose={true}
+                backButtonClose={true}
+                onClosed={this._closeTermsAndConditionsModal} >
                 <View style={styles.modalContent}>
                     <View style={styles.row}>
                         <View style={{ flex: 1 }}>
                             <TouchableHighlight
-                                onPress={this._closeTermsAndConditionsModal}
+                                onPress={this._triggerModalClose}
                                 underlayColor="transparent">
                                 <Text style={styles.modalCloseLink}>X</Text>
                             </TouchableHighlight>
