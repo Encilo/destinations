@@ -8,7 +8,6 @@ import Button from '../components/button';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { ActionCreators } from '../actions';
-import TermsAndConditionsModal from '../components/terms-and-conditions-modal';
 
 const window = Dimensions.get("window");
 
@@ -29,7 +28,8 @@ class SignupModal extends Component {
     }
 
     _closeSignupModal() {
-        this.props.closeSignupModal();
+        if(this.props.signupModal.isVisible)
+            this.props.closeSignupModal();
     }
 
     _signupButtonClickHandler() {
@@ -138,9 +138,7 @@ class SignupModal extends Component {
                             </Text>
                         </Text>
                     </View>
-                </View>
-
-                <TermsAndConditionsModal {...this.props} />
+                </View>                
             </Modal>
         );
     }
@@ -172,7 +170,7 @@ const styles = StyleSheet.create({
     modalCloseLink: {
         textAlign: "right",
         marginRight: 20,
-        marginTop: 10,
+        marginTop: 20,
         fontWeight: "bold",
         color: "black",
         fontSize: 30
@@ -221,12 +219,12 @@ const styles = StyleSheet.create({
         textAlign: "center",
     },
     closeLinkContainer: {
-        flex: 1, 
+        flex: 0.5, 
         justifyContent: "flex-start", 
         alignItems: "center"
     },
     titleContainer: {
-        flex: 1, 
+        flex: 0.5, 
         justifyContent: "flex-start", 
         alignItems:"center"
     },

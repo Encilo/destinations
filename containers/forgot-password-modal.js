@@ -31,7 +31,8 @@ class ForgotPasswordModal extends Component {
     }
 
     _closeForgotPasswordModal() {
-        this.props.closeForgotPasswordModal();
+        if(this.props.forgotPasswordModal.isVisible)
+            this.props.closeForgotPasswordModal();
     }
 
     _resetPasswordButtonClickHandler() {

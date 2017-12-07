@@ -20,10 +20,11 @@ class TermsAndConditionsModal extends Component {
         this.refs.modal.close();
     }
 
-    _closeTermsAndConditionsModal() {
+    _closeTermsAndConditionsModal() { 
         this.props.navigation.navigate("FavoriteInterests");
-        this.props.closeSignupModal();
-        this.props.closeTermsAndConditionsModal();
+        this.props.closeSignupModal(); 
+        if(this.props.termsAndConditionsModal.isVisible)
+            this.props.closeTermsAndConditionsModal();   
     }
 
     render() {

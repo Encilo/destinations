@@ -11,6 +11,7 @@ import SignupModal from '../containers/signup-modal';
 import Login from '../containers/login';
 import Logo from '../components/logo';
 import ForgotPasswordModal from '../containers/forgot-password-modal';
+import TermsAndConditionsModal from '../components/terms-and-conditions-modal';
 
 const window = Dimensions.get("window");
 
@@ -94,6 +95,7 @@ class AuthOptionsScreen extends Component {
                 </View>
                 <ForgotPasswordModal {...this.props} />
                 <SignupModal {...this.props} />
+                <TermsAndConditionsModal {...this.props} />
             </ImageBackground>
         )
     }
